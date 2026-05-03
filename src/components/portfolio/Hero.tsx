@@ -1,117 +1,97 @@
 import { motion } from "framer-motion";
-import { ArrowDown, MapPin, Sparkles } from "lucide-react";
+import { Sparkle } from "./Sparkle";
 
 export const Hero = () => (
-  <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-20">
-    <div className="absolute inset-0 grid-bg opacity-40" />
-    <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-secondary/20 blur-3xl animate-pulse" />
-    <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl animate-pulse" />
+  <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    {/* Decorative wireframe orbs - top right */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 0.5, scale: 1 }}
+      transition={{ duration: 1.5 }}
+      className="absolute -top-20 -right-20 w-[500px] h-[500px] pointer-events-none"
+    >
+      <WireframeOrb />
+    </motion.div>
+    {/* Decorative wireframe orbs - bottom left */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 0.4, scale: 1 }}
+      transition={{ duration: 1.5, delay: 0.3 }}
+      className="absolute -bottom-32 -left-32 w-[600px] h-[600px] pointer-events-none"
+    >
+      <WireframeOrb />
+    </motion.div>
 
-    <div className="container mx-auto relative z-10 grid md:grid-cols-12 gap-12 items-center">
-      <div className="md:col-span-7">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs uppercase tracking-widest text-muted-foreground mb-8"
-        >
-          <Sparkles className="h-3.5 w-3.5 text-primary" />
-          Available for freelance work
-        </motion.div>
+    {/* Sparkles flanking the title */}
+    <Sparkle size={140} className="absolute left-[18%] top-[58%] -translate-y-1/2" delay={0.6} />
+    <Sparkle size={180} className="absolute right-[18%] top-[42%] -translate-y-1/2" delay={0.8} />
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95]"
-        >
-          Alaa
-          <br />
-          <span className="text-gradient">Yassien.</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed"
-        >
-          Freelance <span className="text-foreground font-medium">Flutter Developer</span> and{" "}
-          <span className="text-foreground font-medium">UI/UX Designer</span> crafting cross-platform
-          apps and intuitive interfaces from Luxor, Egypt.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-10 flex flex-wrap items-center gap-4"
-        >
-          <a
-            href="#projects"
-            className="group rounded-full bg-primary px-7 py-3.5 font-medium text-primary-foreground glow-amber hover:scale-[1.03] transition-transform"
-          >
-            View my work
-            <ArrowDown className="inline-block ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
-          </a>
-          <a href="#contact" className="rounded-full border border-border px-7 py-3.5 font-medium hover:bg-card transition-colors">
-            Get in touch
-          </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="mt-10 flex items-center gap-2 text-sm text-muted-foreground"
-        >
-          <MapPin className="h-4 w-4 text-primary" /> Luxor, Egypt · Working remotely worldwide
-        </motion.div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="md:col-span-5 relative"
+    <div className="relative z-10 text-center px-6">
+      <motion.h1
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="font-serif-display text-6xl md:text-8xl lg:text-9xl leading-none"
       >
-        <div className="relative aspect-square max-w-md mx-auto">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0 rounded-full border border-dashed border-primary/40"
-          />
-          <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-6 rounded-full border border-dashed border-secondary/40"
-          />
-          <div className="absolute inset-12 rounded-full glass glow-blue flex items-center justify-center">
-            <div className="text-center px-6">
-              <div className="text-5xl font-bold text-gradient-amber">3+</div>
-              <div className="text-xs uppercase tracking-widest text-muted-foreground mt-2">
-                Years building<br />mobile experiences
-              </div>
-            </div>
-          </div>
-          {[
-            { label: "Flutter", className: "top-0 left-1/2 -translate-x-1/2" },
-            { label: "Dart", className: "top-1/2 right-0 -translate-y-1/2" },
-            { label: "Figma", className: "bottom-0 left-1/2 -translate-x-1/2" },
-            { label: "C++", className: "top-1/2 left-0 -translate-y-1/2" },
-          ].map((tag, i) => (
-            <motion.div
-              key={tag.label}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8 + i * 0.1, type: "spring" }}
-              className={`absolute ${tag.className} glass rounded-full px-4 py-1.5 text-xs font-medium`}
-            >
-              {tag.label}
-            </motion.div>
-          ))}
-        </div>
+        Alaa Yassien
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="font-serif-display text-3xl md:text-5xl mt-4 text-muted-foreground tracking-wide"
+      >
+        Portofolio
+      </motion.p>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.2 }}
+        className="mt-16 text-xs uppercase tracking-[0.5em] text-muted-foreground"
+      >
+        Flutter Developer · UI/UX Designer
       </motion.div>
     </div>
+
+    {/* Scroll cue */}
+    <motion.div
+      animate={{ y: [0, 8, 0] }}
+      transition={{ duration: 2, repeat: Infinity }}
+      className="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-muted-foreground"
+    >
+      Scroll
+    </motion.div>
   </section>
+);
+
+const WireframeOrb = () => (
+  <motion.svg
+    viewBox="0 0 400 400"
+    className="w-full h-full"
+    animate={{ rotate: 360 }}
+    transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+  >
+    <g fill="none" stroke="hsl(0 0% 90%)" strokeWidth="0.4" opacity="0.7">
+      {Array.from({ length: 18 }).map((_, i) => (
+        <ellipse
+          key={i}
+          cx="200"
+          cy="200"
+          rx="180"
+          ry="60"
+          transform={`rotate(${i * 10} 200 200)`}
+        />
+      ))}
+      {Array.from({ length: 12 }).map((_, i) => (
+        <ellipse
+          key={`v${i}`}
+          cx="200"
+          cy="200"
+          rx="60"
+          ry="180"
+          transform={`rotate(${i * 15} 200 200)`}
+        />
+      ))}
+    </g>
+  </motion.svg>
 );
