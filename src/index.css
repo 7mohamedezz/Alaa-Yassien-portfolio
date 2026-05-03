@@ -4,38 +4,53 @@
 
 @layer base {
   :root {
-    /* Monochrome editorial palette — matches Canva portfolio */
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
+    /* Deep editorial navy palette inspired by CV header */
+    --background: 213 50% 11%;
+    --foreground: 210 40% 96%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 213 45% 14%;
+    --card-foreground: 210 40% 96%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 213 45% 14%;
+    --popover-foreground: 210 40% 96%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 4%;
+    --primary: 38 92% 60%;            /* warm amber accent */
+    --primary-foreground: 213 50% 11%;
 
-    --secondary: 0 0% 14%;
-    --secondary-foreground: 0 0% 98%;
+    --primary-glow: 38 100% 70%;
 
-    --muted: 0 0% 14%;
-    --muted-foreground: 0 0% 65%;
+    --secondary: 199 89% 48%;         /* electric blue */
+    --secondary-foreground: 213 50% 11%;
 
-    --accent: 0 0% 18%;
-    --accent-foreground: 0 0% 98%;
+    --muted: 213 35% 20%;
+    --muted-foreground: 213 20% 70%;
+
+    --accent: 199 89% 60%;
+    --accent-foreground: 213 50% 11%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 22%;
-    --input: 0 0% 22%;
-    --ring: 0 0% 98%;
+    --border: 213 35% 22%;
+    --input: 213 35% 22%;
+    --ring: 38 92% 60%;
 
-    --radius: 1.5rem;
+    --radius: 1rem;
 
-    --shadow-soft: 0 30px 80px -20px hsl(0 0% 0% / 0.8);
+    /* Gradients */
+    --gradient-hero: radial-gradient(ellipse at top left, hsl(199 89% 48% / 0.25), transparent 60%),
+                     radial-gradient(ellipse at bottom right, hsl(38 92% 60% / 0.18), transparent 55%),
+                     linear-gradient(180deg, hsl(213 55% 9%), hsl(213 50% 13%));
+    --gradient-accent: linear-gradient(135deg, hsl(38 92% 60%), hsl(20 90% 55%));
+    --gradient-blue: linear-gradient(135deg, hsl(199 89% 48%), hsl(220 80% 55%));
+    --gradient-text: linear-gradient(135deg, hsl(38 100% 70%), hsl(199 89% 60%));
+
+    /* Shadows */
+    --shadow-glow: 0 20px 60px -20px hsl(38 92% 60% / 0.45);
+    --shadow-blue: 0 20px 60px -20px hsl(199 89% 48% / 0.5);
+    --shadow-soft: 0 10px 40px -10px hsl(213 80% 5% / 0.6);
+
+    --transition-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 }
 
@@ -45,57 +60,40 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, sans-serif;
-    background:
-      radial-gradient(ellipse 80% 60% at 20% 20%, hsl(0 0% 18%) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 80% 90%, hsl(0 0% 14%) 0%, transparent 60%),
-      hsl(0 0% 4%);
+    background: var(--gradient-hero);
     background-attachment: fixed;
-    position: relative;
-  }
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.35;
-    z-index: 1;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   h1, h2, h3, h4 {
-    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-    letter-spacing: -0.01em;
-    font-weight: 500;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
   }
-  main, nav, section { position: relative; z-index: 2; }
 }
 
 @layer utilities {
-  .font-serif-display {
-    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
-  .font-italic-display {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
+  .text-gradient-amber {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
-  .grain {
-    position: relative;
+  .glass {
+    background: hsl(213 45% 14% / 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(213 40% 30% / 0.4);
   }
-  .grain::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.25;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  .arch {
-    border-radius: 9999px 9999px 1.5rem 1.5rem;
-  }
-  .arch-full {
-    border-radius: 9999px;
-  }
-  .frame-line {
-    border: 1px solid hsl(0 0% 75% / 0.6);
+  .glow-amber { box-shadow: var(--shadow-glow); }
+  .glow-blue { box-shadow: var(--shadow-blue); }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(213 40% 25% / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(213 40% 25% / 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 }
