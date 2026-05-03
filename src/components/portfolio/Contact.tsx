@@ -1,71 +1,59 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Linkedin, ArrowUpRight } from "lucide-react";
+import { Phone, Mail, Globe } from "lucide-react";
+import { Sparkle } from "./Sparkle";
 
 const channels = [
-  { icon: Mail, label: "Email", value: "Alaamt33@gmail.com", href: "mailto:Alaamt33@gmail.com" },
-  { icon: Phone, label: "Phone", value: "010 3002 7769", href: "tel:+201030027769" },
-  { icon: Linkedin, label: "LinkedIn", value: "alaayassien1", href: "https://linkedin.com/in/alaayassien1" },
-  { icon: MapPin, label: "Location", value: "Luxor, Egypt", href: "#" },
+  { icon: Phone, value: "01030027769", href: "tel:+201030027769" },
+  { icon: Mail, value: "Alaamt33@gmail.com", href: "mailto:Alaamt33@gmail.com" },
+  { icon: Globe, value: "www.AlaaYassienn.com", href: "#" },
 ];
 
 export const Contact = () => (
-  <section id="contact" className="py-32 relative">
-    <div className="container mx-auto">
+  <section id="contact" className="py-32 px-6 overflow-hidden">
+    <div className="container mx-auto max-w-6xl">
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.96 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="relative rounded-[2rem] glass p-10 md:p-16 overflow-hidden"
+        transition={{ duration: 1 }}
+        className="relative frame-line rounded-[2.5rem] p-10 md:p-16"
       >
-        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-secondary/20 blur-3xl" />
+        <Sparkle size={90} className="absolute -top-8 -right-8" delay={0.2} />
+        <Sparkle size={60} className="absolute -bottom-6 -left-6" delay={0.5} />
 
-        <div className="relative grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="text-xs uppercase tracking-[0.3em] text-primary mb-4">// Let's collaborate</div>
-            <h2 className="text-4xl md:text-6xl font-bold leading-[1.05]">
-              Have a project in mind?
-              <br />
-              <span className="text-gradient">Let's build it.</span>
-            </h2>
-            <p className="mt-6 text-lg text-muted-foreground max-w-md">
-              Open to freelance Flutter development, UI/UX design and presentation work. Replies usually within 24 hours.
-            </p>
-            <a
-              href="mailto:Alaamt33@gmail.com"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-7 py-4 font-medium glow-amber hover:scale-105 transition-transform"
+        <h2 className="font-serif-display text-5xl md:text-7xl text-center mb-16">Get In Touch!</h2>
+
+        <div className="grid md:grid-cols-3 gap-5 max-w-4xl mx-auto mb-12">
+          {channels.map((c, i) => (
+            <motion.a
+              key={c.value}
+              href={c.href}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -3 }}
+              className="flex items-center gap-3 rounded-full border border-foreground/40 bg-background/30 backdrop-blur-sm px-4 py-3 hover:bg-foreground hover:text-background transition-colors group"
             >
-              Start a conversation <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </div>
-
-          <div className="grid sm:grid-cols-2 gap-4">
-            {channels.map((c, i) => (
-              <motion.a
-                key={c.label}
-                href={c.href}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                whileHover={{ y: -4 }}
-                className="group rounded-2xl bg-card/60 border border-border p-5 hover:border-primary/40 transition-colors"
-              >
-                <c.icon className="h-5 w-5 text-primary mb-3" />
-                <div className="text-xs uppercase tracking-widest text-muted-foreground">{c.label}</div>
-                <div className="font-medium mt-1 break-all group-hover:text-primary transition-colors">
-                  {c.value}
-                </div>
-              </motion.a>
-            ))}
-          </div>
+              <span className="h-9 w-9 rounded-full bg-foreground text-background flex items-center justify-center group-hover:bg-background group-hover:text-foreground transition-colors flex-shrink-0">
+                <c.icon className="h-4 w-4" />
+              </span>
+              <span className="text-sm font-medium truncate">{c.value}</span>
+            </motion.a>
+          ))}
         </div>
+
+        <p className="text-center text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          I'm always open to new opportunities, collaborations, and freelance projects in Flutter
+          development, UI/UX design, and PowerPoint design.
+          <br />
+          If you have a project idea or a job opportunity, feel free to reach out — I'd love to connect
+          and discuss how I can help bring your vision to life.
+        </p>
       </motion.div>
 
-      <footer className="mt-16 flex flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
-        <div>© {new Date().getFullYear()} Alaa Yassien. Crafted with Flutter-grade attention to detail.</div>
-        <div>Flutter Developer & UI/UX Designer</div>
+      <footer className="mt-16 text-center text-sm text-muted-foreground">
+        © {new Date().getFullYear()} Alaa Yassien · Flutter Developer & UI/UX Designer
       </footer>
     </div>
   </section>
