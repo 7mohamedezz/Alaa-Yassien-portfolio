@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowDown, MapPin, Sparkles } from "lucide-react";
+import alaaPhoto from "@/assets/alaa.png";
 
 export const Hero = () => (
   <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-20">
@@ -86,11 +87,16 @@ export const Hero = () => (
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
             className="absolute inset-6 rounded-full border border-dashed border-secondary/40"
           />
-          <div className="absolute inset-12 rounded-full glass glow-blue flex items-center justify-center">
-            <div className="text-center px-6">
-              <div className="text-5xl font-bold text-gradient-amber">3+</div>
-              <div className="text-xs uppercase tracking-widest text-muted-foreground mt-2">
-                Years building<br />mobile experiences
+          <div className="absolute inset-12 rounded-full glass glow-blue overflow-hidden">
+            <img
+              src={alaaPhoto}
+              alt="Alaa Yassien portrait"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 via-background/60 to-transparent pt-10 pb-5 text-center">
+              <div className="text-3xl font-bold text-gradient-amber leading-none">3+</div>
+              <div className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
+                Years building mobile experiences
               </div>
             </div>
           </div>
